@@ -1,6 +1,7 @@
 package web
 
 import (
+	"encoding/json"
 	"net/http"
 
 	"github.com/plutov/games/pkg/env"
@@ -22,7 +23,8 @@ func ListenAndServe(e env.Context) {
 
 	r := web.New(Context{}).
 		Middleware(web.LoggerMiddleware).
-		Get("/", ctx.home)
+		Get("/", ctx.home).
+		Get("/game", ctx.game)
 
 	serveMux := http.NewServeMux()
 	serveMux.Handle("/", r)
@@ -35,4 +37,13 @@ func ListenAndServe(e env.Context) {
 	err := http.ListenAndServe(ctx.Env.Config.Addr, context.ClearHandler(serveMux))
 
 	shared.LogErr(err)
+}
+
+// Ajax func
+func (c *Context) Ajax(w web.ResponseWriter, r *web.Request, response interface{}) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	resultJSON, _ := json.Marshal(response)
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(resultJSON)
 }

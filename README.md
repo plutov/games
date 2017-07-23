@@ -4,6 +4,11 @@
 
 Simple fun game where you should guess a noun by asking a maximum of 20 questions. Question can be answered only with "Yes", "No" and "Don't know".
 
+### TODO
+
+- 20 questions game. Word "crocodile".
+- Choosing a language and supporting Google Translate API.
+
 ### How to Contribute
 
 * Fork a repository
