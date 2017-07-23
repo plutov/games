@@ -1,0 +1,8 @@
+package: github.com/plutov/games
+import:
+- package: github.com/gocraft/web
+- package: github.com/gorilla/context
+- package: github.com/sirupsen/logrus
+- package: github.com/skratchdot/open-golang
+  subpackages:
+  - open

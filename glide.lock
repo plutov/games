@@ -1,0 +1,18 @@
+hash: 6ff08c126488aa0ddad89acdd491000406badb77bb7f2d42d89c48c44b92796c
+updated: 2017-07-23T15:20:03.79872054+07:00
+imports:
+- name: github.com/gocraft/web
+  version: 6a73d2f729df8199aca71885fbc470a5576a29d2
+- name: github.com/gorilla/context
+  version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
+- name: github.com/sirupsen/logrus
+  version: 3eef8ce63d02f65d2da43214faf7bb19b0b2bb7a
+- name: github.com/skratchdot/open-golang
+  version: 75fb7ed4208cf72d323d7d02fd1a5964a7a9073c
+  subpackages:
+  - open
+- name: golang.org/x/sys
+  version: c4489faa6e5ab84c0ef40d6ee878f7a030281f0f
+  subpackages:
+  - unix
+devImports: []
