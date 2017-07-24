@@ -16,10 +16,14 @@ Simple fun game where you should guess a noun by asking a maximum of 20 question
 * Check that tests are passing
 * Create PR
 
+### Run
+
+```
+docker pull pltvs/games
+docker run -p 8080:8080 pltvs/games
+// Navigate to http://localhost:8080
+```
+
 ### Web Speech API
 
 Web page uses [Web Speech API](https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html).
-
-### Run
-
-Environment requires Docker.
