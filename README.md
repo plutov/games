@@ -7,6 +7,7 @@ Simple fun game where you should guess a noun by asking a maximum of 20 question
 ### TODO
 
 - UT
+- Log completed games
 - 20 questions game. Word "crocodile".
 - Choosing a language and supporting Google Translate API.
 

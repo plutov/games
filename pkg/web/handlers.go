@@ -22,7 +22,6 @@ func ListenAndServe(e env.Context) {
 	ctx.Env = e
 
 	r := web.New(Context{}).
-		Middleware(web.LoggerMiddleware).
 		Get("/", ctx.home).
 		Get("/game", ctx.game)
 
