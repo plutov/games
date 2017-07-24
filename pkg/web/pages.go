@@ -1,7 +1,7 @@
 package web
 
 import (
-	"github.com/plutov/games/pkg/game"
+	"github.com/plutov/games/pkg/ai"
 	"github.com/plutov/games/pkg/shared"
 	"github.com/plutov/games/pkg/tpl"
 
@@ -19,7 +19,11 @@ func (c *Context) home(w web.ResponseWriter, r *web.Request) {
 
 func (c *Context) game(w web.ResponseWriter, r *web.Request) {
 	userInput := r.FormValue("input")
-	answer, err := game.Reply(userInput)
+	answer, err := ai.Reply(userInput)
 	shared.LogErr(err)
-	c.Ajax(w, r, answer)
+	c.Ajax(w, r, struct {
+		Answer string `json:"answer"`
+	}{
+		Answer: answer,
+	})
 }

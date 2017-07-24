@@ -28,7 +28,7 @@ func ListenAndServe(e env.Context) {
 
 	serveMux := http.NewServeMux()
 	serveMux.Handle("/", r)
-	staticFolders := []string{"scripts"}
+	staticFolders := []string{"scripts", "styles"}
 	for _, sf := range staticFolders {
 		serveMux.Handle("/"+sf+"/", http.StripPrefix("/", http.FileServer(http.Dir("static"))))
 	}

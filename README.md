@@ -6,6 +6,7 @@ Simple fun game where you should guess a noun by asking a maximum of 20 question
 
 ### TODO
 
+- UT
 - 20 questions game. Word "crocodile".
 - Choosing a language and supporting Google Translate API.
 
@@ -13,7 +14,7 @@ Simple fun game where you should guess a noun by asking a maximum of 20 question
 
 * Fork a repository
 * Add/Fix something
-* Check that tests are passing
+* Check that tests are passing: `go test -v ./pkg/...`
 * Create PR
 
 ### Run

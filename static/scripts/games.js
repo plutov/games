@@ -1,13 +1,21 @@
 class Games {
 	constructor() {
 		this.next('');
+		this.terminal = document.getElementById('terminal');
 	}
 
 	receive(onresult) {
 		let self = this;
 
 		let recognition = new webkitSpeechRecognition();
-		recognition.onresult = onresult;
+		recognition.onresult = function(e) {
+			if (e.results.length > 0 && e.results[0][0].transcript) {
+				let p = document.createElement('p');
+				p.innerHTML = '<em>YOU</em> > ' + e.results[0][0].transcript;
+				self.terminal.appendChild(p);
+			}
+			onresult(e);
+		}
 		recognition.onerror = function(e) {
 			self.say('An error has occurred with the speech recognition: ' + e.error);
 		};
@@ -33,6 +41,11 @@ class Games {
 			return;
 		}
 
+		// Add to terminal
+		let p = document.createElement('p');
+		p.innerHTML = '<em>ALEX</em> > ' + text;
+		this.terminal.appendChild(p);
+
 		let msg = new SpeechSynthesisUtterance(text);
 		msg.onend = onend;
 		msg.onerror = function(e) {
@@ -47,8 +60,9 @@ class Games {
 
 		r.onreadystatechange = function() {
 			if (r.readyState === XMLHttpRequest.DONE) {
-				if (r.status === 200) {
-					self.say(r.responseText, function() {
+				if (r.status === 200 && r.response) {
+					let json = JSON.parse(r.response);
+					self.say(json.answer, function() {
 						// TODO: check why is not always triggering
 						self.tryToReceive();
 					});
