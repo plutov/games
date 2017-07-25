@@ -1,7 +1,8 @@
 class Games {
 	constructor() {
-		this.next('');
 		this.terminal = document.getElementById('terminal');
+		this.sessionID = this.terminal.getAttribute('data-session-id');
+		this.next('');
 	}
 
 	receive(onresult) {
@@ -71,7 +72,7 @@ class Games {
 				}
 			}
 		};
-		r.open('GET', '/game?input=' + encodeURIComponent(userInput));
+		r.open('GET', '/game?input=' + encodeURIComponent(userInput) + '&session_id=' + this.sessionID);
 		r.send(null);
 	}
 }

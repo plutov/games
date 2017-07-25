@@ -1,10 +1,14 @@
 package env
 
-import "github.com/plutov/games/pkg/config"
+import (
+	"github.com/plutov/games/pkg/ai"
+	"github.com/plutov/games/pkg/config"
+)
 
 // Context struct
 type Context struct {
 	Config *config.Structure
+	GM     *ai.GameManager
 }
 
 // New func
@@ -16,5 +20,6 @@ func New() (Context, error) {
 
 	return Context{
 		Config: c,
+		GM:     ai.NewGameManager(),
 	}, nil
 }
