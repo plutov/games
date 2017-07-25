@@ -14,6 +14,12 @@ var intentCases = []struct {
 	{"fuck yeah", yesIntent, false},
 }
 
+func TestSanitizeInput(t *testing.T) {
+	if "i don't know" != sanitizeInput("I don't know ") {
+		t.Errorf("sanitizeInput(%s) expected %s", "I don't know ", "i don't know")
+	}
+}
+
 func TestInputBelongsToIndent(t *testing.T) {
 	for _, i := range intentCases {
 		actual := inputBelongsToIndent(i.userInput, i.intent)

@@ -18,5 +18,5 @@ func Reply(userInput string) (string, error) {
 		//return "Today we have a game called '20 questions'. Let's play?", nil
 	}
 
-	return "", nil
+	return "Sorry, what do you mean?", nil
 }
