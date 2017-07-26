@@ -72,9 +72,9 @@ func (gm *GameManager) Reply(sessionID string, userInput string) (string, error)
 	if inputBelongsToIndent(userInput, noIntent) {
 		if !game.UserWantsToPlay || !game.Started {
 			game.Canceled = true
-			return "Got it! See you later, alligator!", nil
+			return chooseReply(byeReply), nil
 		}
 	}
 
-	return "Sorry, what do you mean?", nil
+	return chooseReply(cantRecognizeReply), nil
 }
