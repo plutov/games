@@ -7,12 +7,18 @@ import (
 
 // Structure struct
 type Structure struct {
-	Addr string
+	Addr    string
+	AddrAPI string
 }
 
 // Get func
 func Get() (*Structure, error) {
-	file, err := os.Open("config.json")
+	env := os.Getenv("ENV")
+	if 0 == len(env) {
+		env = "dev"
+	}
+
+	file, err := os.Open("config-" + env + ".json")
 	if err != nil {
 		return nil, err
 	}

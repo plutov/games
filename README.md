@@ -29,6 +29,7 @@ Simple fun game where you should guess a noun by asking a maximum of 20 question
 
 ```
 docker pull pltvs/games
-docker run -p 8080:8080 pltvs/games
+docker run -t -p 8080:8080 pltvs/games
+// Prod: docker run -d -p 5100:5100 -e ENV=prod pltvs/games
 // Navigate to http://localhost:8080
 ```

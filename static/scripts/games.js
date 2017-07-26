@@ -2,6 +2,7 @@ class Games {
 	constructor() {
 		this.terminal = document.getElementById('terminal');
 		this.sessionID = this.terminal.getAttribute('data-session-id');
+		this.addrAPI = this.terminal.getAttribute('data-addr-api');
 		this.next('');
 	}
 
@@ -74,7 +75,7 @@ class Games {
 				}
 			}
 		};
-		r.open('GET', '/game?input=' + encodeURIComponent(userInput) + '&session_id=' + this.sessionID);
+		r.open('GET', this.addrAPI + '/game?input=' + encodeURIComponent(userInput) + '&session_id=' + this.sessionID);
 		r.send(null);
 	}
 }
