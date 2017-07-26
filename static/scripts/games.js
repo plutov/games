@@ -65,7 +65,9 @@ class Games {
 					let json = JSON.parse(r.response);
 					self.say(json.answer, function() {
 						// TODO: check why is not always triggering
-						self.tryToReceive();
+						if (json.game && !json.game.canceled) {
+							self.tryToReceive();
+						}
 					});
 				} else {
 					self.say('Server returns non-OK code ' + r.status);

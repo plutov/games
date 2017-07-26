@@ -7,12 +7,12 @@ import (
 
 // Game struct
 type Game struct {
-	GreetingDone    bool
-	UserWantsToPlay bool
-	Started         bool
-	Completed       bool
-	Canceled        bool
-	CreatedAt       time.Time
+	GreetingDone    bool      `json:"greeting_done"`
+	UserWantsToPlay bool      `json:"user_wants_to_play"`
+	Started         bool      `json:"started"`
+	Completed       bool      `json:"completed"`
+	Canceled        bool      `json:"canceled"`
+	CreatedAt       time.Time `json:"created_at"`
 }
 
 // GameManager struct
@@ -34,15 +34,21 @@ func (gm *GameManager) InitSession(sessionID string) {
 	gm.Games[sessionID].CreatedAt = time.Now()
 }
 
-// Reply func
-func (gm *GameManager) Reply(sessionID string, userInput string) (string, error) {
+// GetGameBySessionID func
+func (gm *GameManager) GetGameBySessionID(sessionID string) *Game {
 	game, gameExists := gm.Games[sessionID]
 	if !gameExists {
-		return "", errors.New("Sorry, game not found, please try to refresh a page.")
+		return nil
 	}
 
-	if game.Canceled {
-		return "", nil
+	return game
+}
+
+// Reply func
+func (gm *GameManager) Reply(sessionID string, userInput string) (string, error) {
+	game := gm.GetGameBySessionID(sessionID)
+	if nil == game || game.Canceled {
+		return "", errors.New("Sorry, game not found, please try to refresh a page.")
 	}
 
 	userInput = sanitizeInput(userInput)
@@ -64,7 +70,7 @@ func (gm *GameManager) Reply(sessionID string, userInput string) (string, error)
 	}
 
 	if inputBelongsToIndent(userInput, noIntent) {
-		if !game.UserWantsToPlay {
+		if !game.UserWantsToPlay || !game.Started {
 			game.Canceled = true
 			return "Got it! See you later, alligator!", nil
 		}

@@ -1,6 +1,7 @@
 package web
 
 import (
+	"github.com/plutov/games/pkg/ai"
 	"github.com/plutov/games/pkg/tpl"
 
 	"fmt"
@@ -38,8 +39,10 @@ func (c *Context) game(w web.ResponseWriter, r *web.Request) {
 	}
 
 	c.Ajax(w, r, struct {
-		Answer string `json:"answer"`
+		Answer string   `json:"answer"`
+		Game   *ai.Game `json:"game"`
 	}{
 		Answer: answer,
+		Game:   c.Env.GM.GetGameBySessionID(sessionID),
 	})
 }

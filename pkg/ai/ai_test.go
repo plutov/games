@@ -28,3 +28,17 @@ func TestInputBelongsToIndent(t *testing.T) {
 		}
 	}
 }
+
+func TestInitSession(t *testing.T) {
+	gm := NewGameManager()
+	if nil == gm {
+		t.Errorf("NewGameManager() expected non-nil return value")
+	}
+	gm.InitSession("test")
+	if len(gm.Games) != 1 {
+		t.Errorf("Games expected to have 1 item")
+	}
+	if nil == gm.GetGameBySessionID("test") {
+		t.Errorf("GetGameBySessionID(test) expected non-nil return value")
+	}
+}
